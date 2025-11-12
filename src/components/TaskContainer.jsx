@@ -1,9 +1,10 @@
 import React from "react";
+import Search from "./Search";
 
 const TaskContainer = () => {
   return (
     <div className="bg-[#7dccbe] h-full mx-50 border-7 border-[#53908a] mb-4 flex flex-col justify-center items-center pb-10 pt-10 px-40">
-      <div className="bg-white w-full h-15 mb-10">Input Field</div>
+      <Search />
       <div className="grid grid-cols-[auto_1fr_1fr] grid-rows-[auto_1fr_1fr] size-full gap-2">
         <div />
         <div className="h-20 border-4 border-foreground flex justify-center items-center bg-white">
