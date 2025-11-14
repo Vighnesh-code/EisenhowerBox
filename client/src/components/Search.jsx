@@ -9,10 +9,23 @@ import {
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
+import { addTask } from "../utils/api.js";
 
 const Search = () => {
   const [isImportant, setIsImportant] = useState("Important");
   const [isUrgent, setIsUrgent] = useState("Urgent");
+  const [text, setText] = useState("");
+
+  const taskData = {
+    task: text,
+    important: isImportant === "Important",
+    urgent: isUrgent === "Urgent",
+  };
+
+  const handleAddTask = async () => {
+    await addTask(taskData);
+    setText("");
+  };
 
   return (
     <div className="w-full flex justify-between gap-3">
@@ -20,6 +33,8 @@ const Search = () => {
       <Input
         className="mb-5 bg-white text-[#548f89] font-bold h-10 w-4/5"
         placeholder="Enter your task here..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
       />
 
       {/* Dropdown Selection */}
@@ -69,6 +84,7 @@ const Search = () => {
       <Button
         variant="outline"
         className="border-4 h-10 border-[#53908a] text-[#53908a] hover:bg-[#53908a] hover:text-white cursor-pointer hover:scale-110"
+        onClick={handleAddTask}
       >
         Add Task
       </Button>
