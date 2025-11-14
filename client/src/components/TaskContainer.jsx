@@ -20,10 +20,10 @@ const TaskContainer = () => {
         <div className="h-full w-20 border-4 border-foreground flex items-center justify-center bg-white">
           <span className="-rotate-90 font-bold uppercase">Important</span>
         </div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth">
+        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth no-scrollbar">
           <TaskMapper Imp={true} Urg={true} />
         </div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth">
+        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth no-scrollbar">
           <TaskMapper Imp={true} Urg={false} />
         </div>
         <div className="h-full w-20 border-4 border-foreground flex items-center justify-center bg-white">
@@ -31,10 +31,10 @@ const TaskContainer = () => {
             Not Important
           </span>
         </div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth">
+        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth no-scrollbar">
           <TaskMapper Imp={false} Urg={true} />
         </div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth">
+        <div className="size-full border-4 border-foreground bg-[#daf7ef] overflow-y-scroll scroll-smooth no-scrollbar">
           <TaskMapper Imp={false} Urg={false} />
         </div>
       </div>

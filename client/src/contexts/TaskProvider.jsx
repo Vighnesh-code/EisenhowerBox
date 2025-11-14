@@ -2,12 +2,14 @@ import React, { createContext, useContext, useState } from "react";
 
 const TaskContext = createContext();
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
 
   const addTask = async (taskData) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/new`, {
+      const response = await fetch(`${API_BASE_URL}/api/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(taskData),
@@ -26,13 +28,9 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
-  const loadTasks = async () => {
-    await getTask();
-  };
-
   const getTask = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/all`);
+      const response = await fetch(`${API_BASE_URL}/api/all`);
       const data = await response.json();
 
       if (!response.ok) {
@@ -50,7 +48,7 @@ export const TaskProvider = ({ children }) => {
 
   const deleteTask = async (id) => {
     try {
-      await fetch(`http://localhost:3000/api/delete/${id}`, {
+      await fetch(`${API_BASE_URL}/api/delete/${id}`, {
         method: "DELETE",
       });
       console.log("Task delete Successfully");
@@ -61,9 +59,7 @@ export const TaskProvider = ({ children }) => {
   };
 
   return (
-    <TaskContext.Provider
-      value={{ tasks, addTask, getTask, loadTasks, deleteTask }}
-    >
+    <TaskContext.Provider value={{ tasks, addTask, getTask, deleteTask }}>
       {children}
     </TaskContext.Provider>
   );

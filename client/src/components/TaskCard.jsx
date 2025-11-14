@@ -14,7 +14,7 @@ const TaskCard = ({ data }) => {
   };
 
   return (
-    <Card className="h-9 flex justify-center gap-10">
+    <Card className="max-h-15 flex justify-center gap-1 overflow-hidden">
       <CardContent className="flex justify-between items-center">
         <p>{data.task}</p>
         <Button
