@@ -21,3 +21,16 @@ export const getTasks = async (req, res) => {
       .json({ message: "Internal Server Error", error: error.message });
   }
 };
+
+export const deleteTask = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await taskModel.findByIdAndDelete(id);
+    res.status(200).json({ message: "Task Deleted Successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Internal Server Error", error: error.message });
+  }
+};
