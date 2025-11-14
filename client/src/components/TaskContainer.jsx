@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Search from "./Search";
-import { getTask } from "../utils/api";
+import { useTasks } from "../contexts/TaskProvider";
+import TaskMapper from "./TaskMapper";
 
 const TaskContainer = () => {
-  useEffect(() => {
-    const allTasks = async () => {
-      const response = await getTask();
-      console.log("Fetched data", response.allData);
-    };
-
-    allTasks();
-  }, []);
+  const { loadTasks, tasks } = useTasks();
 
   return (
     <div className="bg-[#7dccbe] h-full mx-50 border-7 border-[#53908a] mb-4 flex flex-col justify-center items-center pb-10 pt-10 px-40">
@@ -26,15 +20,23 @@ const TaskContainer = () => {
         <div className="h-full w-20 border-4 border-foreground flex items-center justify-center bg-white">
           <span className="-rotate-90 font-bold uppercase">Important</span>
         </div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef]"></div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef]"></div>
+        <div className="size-full border-4 border-foreground bg-[#daf7ef]">
+          <TaskMapper Imp={true} Urg={true} />
+        </div>
+        <div className="size-full border-4 border-foreground bg-[#daf7ef]">
+          <TaskMapper Imp={true} Urg={false} />
+        </div>
         <div className="h-full w-20 border-4 border-foreground flex items-center justify-center bg-white">
           <span className="-rotate-90 font-bold uppercase whitespace-nowrap">
             Not Important
           </span>
         </div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef]"></div>
-        <div className="size-full border-4 border-foreground bg-[#daf7ef]"></div>
+        <div className="size-full border-4 border-foreground bg-[#daf7ef]">
+          <TaskMapper Imp={false} Urg={true} />
+        </div>
+        <div className="size-full border-4 border-foreground bg-[#daf7ef]">
+          <TaskMapper Imp={false} Urg={false} />
+        </div>
       </div>
     </div>
   );

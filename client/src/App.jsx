@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskContainer from "./components/TaskContainer";
+import { useTasks } from "./contexts/TaskProvider";
 
 function App() {
+  const { getTask } = useTasks();
+
+  useEffect(() => {
+    getTask();
+  }, []);
+
   return (
     <div className="h-screen w-screen flex flex-col">
       <div className="flex justify-center py-6 mx-50 rounded-t-[14px] uppercase font-bold border-7 border-b-0 border-[#53908a] mt-4 ">

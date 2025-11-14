@@ -9,12 +9,14 @@ import {
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { addTask } from "../utils/api.js";
+import { useTasks } from "../contexts/TaskProvider";
 
 const Search = () => {
   const [isImportant, setIsImportant] = useState("Important");
   const [isUrgent, setIsUrgent] = useState("Urgent");
   const [text, setText] = useState("");
+
+  const { tasks, addTask, getTask } = useTasks();
 
   const taskData = {
     task: text,
@@ -25,6 +27,7 @@ const Search = () => {
   const handleAddTask = async () => {
     await addTask(taskData);
     setText("");
+    getTask();
   };
 
   return (
