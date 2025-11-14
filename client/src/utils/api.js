@@ -22,3 +22,20 @@ export const addTask = async (taskData) => {
     throw error;
   }
 };
+
+export const getTask = async () => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/all`);
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.log("Error response: ", data);
+      throw new Error(data.message || "Failed to fetch all tasks");
+    }
+
+    return data;
+  } catch (error) {
+    console.log("Error in getTask Context: ", error.message);
+    throw error;
+  }
+};
