@@ -48,8 +48,22 @@ export const TaskProvider = ({ children }) => {
     }
   };
 
+  const deleteTask = async (id) => {
+    try {
+      await fetch(`http://localhost:3000/api/delete/${id}`, {
+        method: "DELETE",
+      });
+      console.log("Task delete Successfully");
+    } catch (error) {
+      console.log("Error in deleteTask Context: ", error.message);
+      throw error;
+    }
+  };
+
   return (
-    <TaskContext.Provider value={{ tasks, addTask, getTask, loadTasks }}>
+    <TaskContext.Provider
+      value={{ tasks, addTask, getTask, loadTasks, deleteTask }}
+    >
       {children}
     </TaskContext.Provider>
   );
