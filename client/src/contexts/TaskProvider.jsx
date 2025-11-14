@@ -19,8 +19,6 @@ export const TaskProvider = ({ children }) => {
         console.error("Error response: ", data);
         throw new Error(data.message || "Failed to add task");
       }
-
-      console.log("Success: ", data);
       return data;
     } catch (error) {
       console.log(`Error in Context: ${error.message}`);
@@ -43,7 +41,6 @@ export const TaskProvider = ({ children }) => {
       }
 
       setTasks(data.allData);
-      console.log(data.allData);
       return data;
     } catch (error) {
       console.log("Error in getTask Context: ", error.message);

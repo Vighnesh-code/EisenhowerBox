@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useTasks } from "../contexts/TaskProvider";
+import TaskCard from "./TaskCard";
 
 const TaskMapper = ({ Imp, Urg }) => {
   const { tasks } = useTasks();
@@ -8,11 +9,11 @@ const TaskMapper = ({ Imp, Urg }) => {
   );
 
   return (
-    <div className="p-4">
+    <div className="p-5">
       {filteredTasks.length > 0 ? (
         <ul>
           {filteredTasks.map((data) => (
-            <li key={data._id}>* {data.task}</li>
+            <TaskCard key={data._id} data={data} />
           ))}
         </ul>
       ) : (
